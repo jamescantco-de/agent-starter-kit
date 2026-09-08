@@ -1,0 +1,89 @@
+# AgentSync Configuration
+# Synchronize single-source AI instructions, skills, and commands across all coding agents.
+# 
+# Source directory (relative to this config file)
+source_dir = "."
+
+# Gitignore management
+[gitignore]
+enabled = true
+marker = "AI Agent Symlinks"
+
+# =============================================================================
+# Agent Targets
+# =============================================================================
+
+# Claude Code (Anthropic)
+[agents.claude]
+enabled = true
+description = "Claude Code - Anthropic CLI"
+
+[agents.claude.targets.instructions]
+source = "AGENTS.md"
+destination = "CLAUDE.md"
+type = "symlink"
+
+[agents.claude.targets.skills]
+source = "skills"
+destination = ".claude/skills"
+type = "symlink"
+
+# Google Antigravity
+[agents.antigravity]
+enabled = true
+description = "Google Antigravity"
+
+[agents.antigravity.targets.instructions]
+source = "AGENTS.md"
+destination = "ANTIGRAVITY.md"
+type = "symlink"
+
+[agents.antigravity.targets.skills]
+source = "skills"
+destination = ".antigravity/skills"
+type = "symlink"
+
+# Gemini CLI
+[agents.gemini]
+enabled = true
+description = "Google Gemini CLI"
+
+[agents.gemini.targets.instructions]
+source = "AGENTS.md"
+destination = "GEMINI.md"
+type = "symlink"
+
+[agents.gemini.targets.skills]
+source = "skills"
+destination = ".gemini/skills"
+type = "symlink"
+
+# GitHub Copilot
+[agents.copilot]
+enabled = true
+description = "GitHub Copilot"
+
+[agents.copilot.targets.instructions]
+source = "AGENTS.md"
+destination = ".github/copilot-instructions.md"
+type = "symlink"
+
+# OpenAI Codex CLI
+[agents.codex]
+enabled = true
+description = "OpenAI Codex CLI"
+
+[agents.codex.targets.skills]
+source = "skills"
+destination = ".codex/skills"
+type = "symlink"
+
+# OpenCode
+[agents.opencode]
+enabled = true
+description = "OpenCode CLI"
+
+[agents.opencode.targets.skills]
+source = "skills"
+destination = ".opencode/skills"
+type = "symlink"
