@@ -156,7 +156,7 @@ def render_master():
     canvas = Image.alpha_composite(canvas, div_img)
 
     # 6. Tagline: Exact Tokens Burned & Ethos
-    tag_font_bold = ImageFont.truetype(MONO_PATH, 24)
+    tag_font_bold = ImageFont.truetype(MONO_PATH, 22)
     tag_font_sub = ImageFont.truetype(MONO_PATH, 20)
     foot_font = ImageFont.truetype(MONO_PATH, 16)
     
@@ -164,7 +164,7 @@ def render_master():
     t_draw = ImageDraw.Draw(tag_img)
     
     # Line 1: Exact tokens burned
-    line1 = "18,200,000+ TOKENS BURNED & REFINED"
+    line1 = "1.13 BILLION TOKENS BURNED... AND COUNTING"
     t_draw.text((85, 492), line1, font=tag_font_bold, fill=GHOST_WHITE)
     
     # Line 2: The builder formula

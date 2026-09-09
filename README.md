@@ -62,6 +62,9 @@ Rather than managing separate prompt files for every tool, manage one canonical 
 - `.github/copilot-instructions.md` (GitHub Copilot)
 - `.cursor/` & `.codex/`
 
+### 5. Context Preservation & Token Economics (RTK)
+The silent killer in agentic coding is terminal bloat. A single `git diff` or test runner dump can swallow 50,000 characters of context in seconds, polluting the model's memory. In this setup, we run **[RTK (Rust Token Killer)](https://github.com/rtk-ai/rtk)** as a transparent CLI proxy. It automatically intercepts shell commands (`git`, `diff`, `log`, tests) and filters repetitive noise before it hits the LLM, preserving 60–90% of tokens on terminal operations (recording over 18.2M tokens saved on my machine at 97%+ efficiency).
+
 ---
 
 ## Directory Structure

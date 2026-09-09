@@ -21,3 +21,7 @@ __pycache__/
 .scratch/
 tmp/
 *.log
+
+# Local session handover notes (never commit or publish)
+docs/HANDOVER.md
+HANDOVER.md
