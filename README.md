@@ -1,7 +1,11 @@
+<p align="center">
+  <img src="assets/banner.jpg" alt="Agent Starter Kit by James Can't Code" width="100%">
+</p>
+
 # Agent Starter Kit
 
 > **A battle-tested foundation for builders who don't write code — but build real software anyway.**  
-> Curated by **James Can't Code** ([jamescantco.de](https://jamescantco.de) / [@JamesCantCode](https://x.com/JamesCantCode)).
+> Curated by **James Can't Code** ([jamescantco.de](https://jamescantco.de) | [@JamesCantCode](https://x.com/JamesCantCode)).
 
 ---
 
