@@ -4,7 +4,7 @@ I’m a Dad, I’ve spent my entire career on the commercial side of tech, and u
 
 Yet over the past year, I’ve built and shipped real, functioning web apps, mobile PWAs, and production workflows using AI agents and sheer willpower.
 
-Along the way, my machine has processed and burned over 1.13 billion tokens... and counting. I have watched context windows collapse into chaos, had Claude rewrite working files into oblivion, and paid real money for agents to run in circles. I've watched context windows collapse into chaos, had Claude rewrite working files into oblivion, and paid real money for agents to run in circles. 
+Along the way, my machine has processed and burned over 1.13 billion tokens... and counting. I have watched context windows collapse into chaos, had Claude rewrite working files into oblivion, and paid real money for agents to run in circles.
 
 Over time, through endless trial and error - and borrowing brilliant ideas from across the community - I managed to save over 18 million tokens on CLI operations alone, and put together an agent setup that actually works day in, day out.
 

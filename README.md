@@ -78,7 +78,19 @@ agent-starter-kit/
 ├── GEMINI.md               # Symlink to AGENTS.md for Gemini / Antigravity
 ├── Correction Rules.md     # Self-healing rules ledger
 ├── agentsync.toml          # Multi-agent symlink synchronization config
-├── skills/                 # Battle-tested starter skills
+├── skills/                 # 12 Production SuperSkills & Foundations
+│   ├── security-audit/     # APIs, auth boundaries, OWASP, spend caps, contracts
+│   ├── performance-review/ # Core Web Vitals, React re-renders, DB slow queries
+│   ├── quality-engineering/# GateGuard, TDD red-green loops, verification gates
+│   ├── design-polish/      # Design engineering, typography scales, active states
+│   ├── motion-engineering/ # Standardised spring tokens, layout transitions, a11y
+│   ├── database-ops/       # Schema design, indexing, zero-downtime migrations
+│   ├── cloud-data-pipelines/# BigQuery SQL, data quality, Dataflow / Beam
+│   ├── fullstack-mobile/   # SwiftUI @Observable, Swift 6.2 concurrency, KMP
+│   ├── social-content-engine/# Multi-platform drafting, format matrices, direct APIs
+│   ├── programmatic-video/ # React Remotion, Manim technical diagrams, FFmpeg
+│   ├── commercial-revops/  # Product Lens, investor memos, B2B lead intelligence
+│   ├── agent-orchestration/# Multi-agent swarms, parallel DevFleet worktrees
 │   ├── tdd-workflow/       # Test-driven development gate
 │   ├── verification-loop/  # Deterministic checks before claiming completion
 │   ├── script-optimizer/   # The 1-2-3 Rule workflow
@@ -108,6 +120,19 @@ Open `AGENTS.md` and tailor Section 1 with your own project context, tech stack,
 
 ### 4. (Optional) Install RTK for CLI Token Savings
 If you run coding agents that execute terminal commands (`git diff`, `npm test`, `git log`), look into CLI proxying tools like [RTK (Rust Token Killer)](https://github.com/rtk-ai/rtk) to filter terminal noise and save 60–90% of your context tokens on shell operations.
+
+---
+
+## The 5-Part Agent Architecture Series
+
+This starter kit is accompanied by our deep-dive publication series:
+1. **Part 1**: [1.13 Billion Tokens Burned... And Counting](OVERVIEW.md) — The foundation, token economics with RTK, and the 1-2-3 rule.
+2. **Part 2**: [The 40-Year-Old Design Rule That Fixed My AI Agent's Memory](SUPERSKILLS.md) — Progressive disclosure and the SuperSkills architecture.
+3. **Part 3**: [The Production Shield](PRODUCTION_SHIELD.md) — Security audits, quality engineering gates, database indexing, and performance.
+4. **Part 4**: [Taste as Code](TASTE_AS_CODE.md) — Design engineering, spring physics tokens, and Apple optical glass.
+5. **Part 5**: [The Autonomous Studio](AUTONOMOUS_STUDIO.md) — Parallel Git worktrees, 4-Voice Decision Councils, and programmatic video.
+
+Looking for the standalone SuperSkills repository with all 12 skills and reference checklists? Check out **[SuperSkills on GitHub](https://github.com/jamescantco-de/superskills)**.
 
 ---
 

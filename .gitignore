@@ -3,10 +3,12 @@
 Thumbs.db
 .vscode/
 .idea/
+Icon*
 
 # Environment & Secrets
 .env
 .env.local
+.env.*
 *.pem
 *.key
 
@@ -22,6 +24,9 @@ __pycache__/
 tmp/
 *.log
 
-# Local session handover notes (never commit or publish)
-docs/HANDOVER.md
-HANDOVER.md
+# Local publishing, automation, and editorial tracking (never commit or publish)
+docs/
+published*.json
+scripts/direct_publish*.mjs
+scripts/render_superskills_banner.py
+scripts/render_all_trilogy_banners.py
