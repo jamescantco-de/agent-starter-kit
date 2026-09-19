@@ -1,0 +1,48 @@
+name: JCC Cloud Scheduled Publisher
+
+on:
+  schedule:
+    # 07:30 UTC = 08:30 BST (British Summer Time) on Mondays and Thursdays
+    - cron: '30 7 * * 1,4'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run Cloud Dispatcher
+        env:
+          JCC_X_API_KEY: ${{ secrets.JCC_X_API_KEY }}
+          JCC_X_API_SECRET: ${{ secrets.JCC_X_API_SECRET }}
+          JCC_X_ACCESS_TOKEN: ${{ secrets.JCC_X_ACCESS_TOKEN }}
+          JCC_X_ACCESS_SECRET: ${{ secrets.JCC_X_ACCESS_SECRET }}
+          BSKY_IDENTIFIER: ${{ secrets.BSKY_IDENTIFIER }}
+          BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
+        run: |
+          node scripts/cloud_dispatcher.mjs
+
+      - name: Commit & Push Published State
+        run: |
+          git config --global user.name "James Can't Code Bot"
+          git config --global user.email "bot@jamescantco.de"
+          if [[ -n $(git status --porcelain published_*.json) ]]; then
+            git add published_*.json
+            git commit -m "chore(auto): record published state for scheduled drop [skip ci]"
+            git push origin main
+          else
+            echo "No new state files to commit."
+          fi
