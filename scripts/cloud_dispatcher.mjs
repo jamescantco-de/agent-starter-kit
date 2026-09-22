@@ -149,6 +149,11 @@ async function main() {
   const statePath = path.join(REPO_ROOT, targetDrop.stateFile);
   if (fs.existsSync(statePath) && !forceName && !isDryRun && !isVerify) {
     console.log(`✅ Drop "${targetDrop.name}" has ALREADY been published! (Found ${targetDrop.stateFile})`);
+    console.log(`\n🤖 Running Golden Hour Auto-Reply Co-Pilot (/james-voice)...`);
+    const copilotScript = path.join(REPO_ROOT, 'scripts', 'auto_reply_copilot.mjs');
+    if (fs.existsSync(copilotScript)) {
+      await runScript(copilotScript, null, ['--auto']);
+    }
     console.log(`\n🛰️ Running Conversational Radar & Engagement Monitor...`);
     const monitorScript = path.join(REPO_ROOT, 'scripts', 'monitor_replies.mjs');
     if (fs.existsSync(monitorScript)) {
