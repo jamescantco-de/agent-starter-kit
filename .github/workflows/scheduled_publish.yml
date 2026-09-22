@@ -2,9 +2,14 @@ name: JCC Cloud Scheduled Publisher
 
 on:
   schedule:
-    # 07:30 UTC = 08:30 BST (British Summer Time) on Mondays and Thursdays
-    - cron: '30 7 * * 1,4'
+    # 07:30 UTC = 08:30 BST (Sundays, Mondays, and Thursdays)
+    - cron: '30 7 * * 0,1,4'
   workflow_dispatch:
+    inputs:
+      force:
+        description: 'Drop name or script to force (e.g. superskills), or leave blank for auto/catch-up'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -33,14 +38,18 @@ jobs:
           BSKY_IDENTIFIER: ${{ secrets.BSKY_IDENTIFIER }}
           BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
         run: |
-          node scripts/cloud_dispatcher.mjs
+          if [ -n "${{ inputs.force }}" ]; then
+            node scripts/cloud_dispatcher.mjs --force="${{ inputs.force }}"
+          else
+            node scripts/cloud_dispatcher.mjs --catch-up
+          fi
 
       - name: Commit & Push Published State
         run: |
           git config --global user.name "James Can't Code Bot"
           git config --global user.email "bot@jamescantco.de"
           if [[ -n $(git status --porcelain published_*.json) ]]; then
-            git add published_*.json
+            git add -f published_*.json
             git commit -m "chore(auto): record published state for scheduled drop [skip ci]"
             git push origin main
           else

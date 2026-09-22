@@ -24,9 +24,6 @@ __pycache__/
 tmp/
 *.log
 
-# Local publishing, automation, and editorial tracking (never commit or publish)
+# Local editorial tracking
 docs/
-published*.json
-scripts/direct_publish*.mjs
-scripts/render_superskills_banner.py
-scripts/render_all_trilogy_banners.py
+

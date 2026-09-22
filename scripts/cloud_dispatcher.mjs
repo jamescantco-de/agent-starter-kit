@@ -45,6 +45,13 @@ export const SCHEDULE = [
     script: 'direct_publish_autonomous_studio.mjs',
     draftId: '2099248012199387143',
     stateFile: 'published_autonomous_studio.json'
+  },
+  {
+    date: '2026-10-04', // Sun 04 Oct - Grand Finale & Website Reveal
+    name: "The Non-Coder's Agentic Production Handbook (Grand Finale)",
+    script: 'direct_publish_handbook.mjs',
+    draftId: '2101387410147848193',
+    stateFile: 'published_handbook.json'
   }
 ];
 
@@ -59,10 +66,14 @@ function getLondonDateString() {
   return formatter.format(d);
 }
 
-async function runScript(scriptPath, draftId) {
+async function runScript(scriptPath, draftId, flags = ['--publish']) {
   return new Promise((resolve, reject) => {
-    console.log(`\n🚀 Executing publisher: ${scriptPath} --publish --draft-id ${draftId}\n`);
-    const proc = spawn('node', [scriptPath, '--publish', '--draft-id', draftId], {
+    const runArgs = [scriptPath, ...flags];
+    if (draftId && flags.includes('--publish')) {
+      runArgs.push('--draft-id', draftId);
+    }
+    console.log(`\n🚀 Executing publisher: ${runArgs.join(' ')}\n`);
+    const proc = spawn('node', runArgs, {
       cwd: REPO_ROOT,
       stdio: 'inherit',
       env: process.env
@@ -81,6 +92,9 @@ async function main() {
   const args = process.argv.slice(2);
   const forceArg = args.find(a => a.startsWith('--force='));
   const forceName = forceArg ? forceArg.split('=')[1] : null;
+  const catchUp = args.includes('--catch-up') || args.includes('-c');
+  const isDryRun = args.includes('--dry-run');
+  const isVerify = args.includes('--verify-auth');
 
   const londonToday = getLondonDateString();
   console.log(`==================================================`);
@@ -100,8 +114,23 @@ async function main() {
     targetDrop = SCHEDULE.find(s => s.date === londonToday);
   }
 
+  // If no drop scheduled for today (or today is already done), check for pending catch-up
+  if (!targetDrop || catchUp) {
+    const isTargetDone = targetDrop && fs.existsSync(path.join(REPO_ROOT, targetDrop.stateFile));
+    if (!targetDrop || isTargetDone) {
+      const pendingDrop = SCHEDULE.find(s => {
+        const statePath = path.join(REPO_ROOT, s.stateFile);
+        return s.date <= londonToday && !fs.existsSync(statePath);
+      });
+      if (pendingDrop) {
+        targetDrop = pendingDrop;
+        console.log(`🔄 CATCH-UP Execution for missed drop: "${targetDrop.name}" (Scheduled: ${targetDrop.date})`);
+      }
+    }
+  }
+
   if (!targetDrop) {
-    console.log(`ℹ️ No drop scheduled for today (${londonToday}).`);
+    console.log(`ℹ️ No pending drops scheduled for on or before today (${londonToday}).`);
     console.log(`Upcoming schedule:`);
     for (const item of SCHEDULE) {
       const isPast = item.date < londonToday;
@@ -113,20 +142,21 @@ async function main() {
   }
 
   const statePath = path.join(REPO_ROOT, targetDrop.stateFile);
-  if (fs.existsSync(statePath) && !forceName) {
+  if (fs.existsSync(statePath) && !forceName && !isDryRun && !isVerify) {
     console.log(`✅ Drop "${targetDrop.name}" has ALREADY been published! (Found ${targetDrop.stateFile})`);
     console.log(`Skipping to prevent duplicate posting.`);
     return;
   }
 
-  console.log(`🎯 Executing Scheduled Drop: "${targetDrop.name}" (${targetDrop.date})`);
+  console.log(`🎯 Target Drop: "${targetDrop.name}" (${targetDrop.date})`);
   const scriptPath = path.join(REPO_ROOT, 'scripts', targetDrop.script);
   if (!fs.existsSync(scriptPath)) {
     throw new Error(`Publisher script not found at ${scriptPath}`);
   }
 
-  await runScript(scriptPath, targetDrop.draftId);
-  console.log(`\n🎉 Scheduled drop "${targetDrop.name}" completed successfully!\n`);
+  const flags = isVerify ? ['--verify-auth'] : (isDryRun ? ['--dry-run'] : ['--publish']);
+  await runScript(scriptPath, targetDrop.draftId, flags);
+  console.log(`\n🎉 Scheduled drop "${targetDrop.name}" dispatch completed successfully!\n`);
 }
 
 main().catch(err => {
