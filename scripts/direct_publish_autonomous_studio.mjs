@@ -105,7 +105,7 @@ export const BSKY_THREAD = [
   {
     "num": 5,
     "hasMedia": false,
-    "text": "The future of software isn't typing 50 prompts an hour. It's building systems that operate with genuine velocity.\n\nAll orchestration patterns, Remotion templates, and API scripts are open-source:\nhttps://github.com/jamescantco-de/superskills"
+    "text": "How many agents do you currently run concurrently? Single-thread chat, parallel worktrees, or full background swarms?\n\nCurious what your multi-agent bottleneck is right now 👇\n\nAll orchestration SuperSkills are open-source on GitHub:\nhttps://github.com/jamescantco-de/superskills"
   }
 ];
 
@@ -573,8 +573,16 @@ async function main() {
     const postUrl = `https://x.com/jamescantcode/status/${publishedArticle.post_id}`;
     console.log(`   🎉 X Article Published! Post URL: ${postUrl}`);
 
-    console.log("4. Posting first reply with GitHub link...");
-    const replyText = `All 12 SuperSkills including agent-orchestration, programmatic-video, and social-content-engine are open-source on GitHub:\nhttps://github.com/jamescantco-de/superskills\n\nAnd for the foundational multi-agent setup, grab the Agent Starter Kit:\nhttps://github.com/jamescantco-de/agent-starter-kit`;
+    console.log("4. Posting first reply with GitHub link and bookmark checklist...");
+    const replyText = `🔖 The Autonomous Venture Studio Blueprint:
+
+1. DevFleet Worktrees: Parallel Git branches with zero collisions
+2. 4-Voice Council: Architect vs Pragmatist vs Adversary vs Operator
+3. React Remotion: Programmatic 9:16 reels rendered straight from code
+4. Direct APIs: Cloud CI/CD auto-publish to X & Bluesky
+
+Open-source templates:
+https://github.com/jamescantco-de/superskills`;
     const replyTweet = await postReplyToPost(publishedArticle.post_id, replyText);
     if (replyTweet) console.log(`   First reply posted: https://x.com/jamescantcode/status/${replyTweet.id}`);
 

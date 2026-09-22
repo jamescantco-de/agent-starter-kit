@@ -105,7 +105,7 @@ export const BSKY_THREAD = [
   {
     "num": 5,
     "hasMedia": false,
-    "text": "You don't have to accept fragile software just because you used AI agents.\n\nAll 4 SuperSkills of The Production Shield are open-source and MIT-licensed.\n\nGrab the raw markdown files here:\nhttps://github.com/jamescantco-de/superskills"
+    "text": "Which of these 4 walls has bitten your builds hardest: silent security leaks, phantom regressions, slow queries, or bloated UI?\n\nCurious what safeguards you run. Let's trade notes below 👇\n\nAll 4 SuperSkills are open-source on GitHub:\nhttps://github.com/jamescantco-de/superskills"
   }
 ];
 
@@ -573,8 +573,16 @@ async function main() {
     const postUrl = `https://x.com/jamescantcode/status/${publishedArticle.post_id}`;
     console.log(`   🎉 X Article Published! Post URL: ${postUrl}`);
 
-    console.log("4. Posting first reply with GitHub link...");
-    const replyText = `All 4 SuperSkills of The Production Shield are completely open-source on GitHub:\nhttps://github.com/jamescantco-de/superskills\n\nAnd for the foundational multi-agent setup, grab the Agent Starter Kit:\nhttps://github.com/jamescantco-de/agent-starter-kit`;
+    console.log("4. Posting first reply with GitHub link and bookmark checklist...");
+    const replyText = `🔖 The 4-Wall Production Shield Cheat Sheet:
+
+1. security-audit: Threat model + tenant isolation before deploy
+2. quality-engineering: Block edits until reproduction test passes
+3. database-ops: Foreign key indexing + zero-downtime migrations
+4. performance-review: CWV audits + kill React re-render cascades
+
+Open-source templates:
+https://github.com/jamescantco-de/superskills`;
     const replyTweet = await postReplyToPost(publishedArticle.post_id, replyText);
     if (replyTweet) console.log(`   First reply posted: https://x.com/jamescantcode/status/${replyTweet.id}`);
 

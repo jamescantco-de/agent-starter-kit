@@ -2,8 +2,10 @@ name: JCC Cloud Scheduled Publisher
 
 on:
   schedule:
-    # 07:30 UTC = 08:30 BST (Sundays, Mondays, and Thursdays)
-    - cron: '30 7 * * 0,1,4'
+    # 09:00 UTC = 10:00 BST (Sundays, Mondays, and Thursdays - Primary Morning Wave)
+    - cron: '0 9 * * 0,1,4'
+    # 14:30 UTC = 15:30 BST (Sundays, Mondays, and Thursdays - Afternoon US Wave & Radar)
+    - cron: '30 14 * * 0,1,4'
   workflow_dispatch:
     inputs:
       force:

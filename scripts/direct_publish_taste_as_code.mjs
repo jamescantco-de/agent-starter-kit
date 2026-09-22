@@ -105,7 +105,7 @@ export const BSKY_THREAD = [
   {
     "num": 5,
     "hasMedia": false,
-    "text": "You don't need 5 years of design school to build software people fall in love with. You just need rules.\n\nBoth design-polish and motion-engineering are open-source in the SuperSkills repository:\nhttps://github.com/jamescantco-de/superskills"
+    "text": "What's your biggest pet peeve with AI-generated UI? The purple gradient soup, unclickable 20px buttons, or jittery PowerPoint animations?\n\nCurious what tells you instantly that an app was vibe-coded 👇\n\nOpen-source design rules:\nhttps://github.com/jamescantco-de/superskills"
   }
 ];
 
@@ -573,8 +573,15 @@ async function main() {
     const postUrl = `https://x.com/jamescantcode/status/${publishedArticle.post_id}`;
     console.log(`   🎉 X Article Published! Post URL: ${postUrl}`);
 
-    console.log("4. Posting first reply with GitHub link...");
-    const replyText = `Both design-engineering SuperSkills are completely open-source on GitHub:\nhttps://github.com/jamescantco-de/superskills\n\nAnd for the foundational multi-agent setup, grab the Agent Starter Kit:\nhttps://github.com/jamescantco-de/agent-starter-kit`;
+    console.log("4. Posting first reply with GitHub link and bookmark checklist...");
+    const replyText = `🔖 The 3 Laws of "Taste as Code" Cheat Sheet:
+
+1. 60-30-10: 60% canvas, 30% structure, 10% accent (strictly for CTAs).
+2. The 44px Law: 44x44px min touch targets + active:scale-[0.98] compression.
+3. Spring Physics: Standardised mass/stiffness > linear CSS easing.
+
+Open-source rules:
+https://github.com/jamescantco-de/superskills`;
     const replyTweet = await postReplyToPost(publishedArticle.post_id, replyText);
     if (replyTweet) console.log(`   First reply posted: https://x.com/jamescantcode/status/${replyTweet.id}`);
 

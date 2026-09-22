@@ -119,12 +119,12 @@ I fed the headless xcodebuild compiler logs back into a verification agent with 
   {
     num: 5,
     hasMedia: false,
-    text: `The full Non-Coder Agentic Production Handbook is live on X as a native long-form Article.
+    text: `What is the one project you've shelved because you "can't code"? A native mobile app, a SaaS backend, or internal tooling?
 
-Full open-source companion repo with all prompt templates:
-https://github.com/jamescantco-de/agent-starter-kit
+If a non-coder can pass Apple review on attempt 5, you can ship too. Tell me what you're building below 👇
 
-0% Code. 100% Persistence. #BuildInPublic #IndieHacker`
+Full interactive hub & repo:
+https://jamescantco.de/handbook`
   }
 ];
 
@@ -509,8 +509,15 @@ async function main() {
     const postUrl = `https://x.com/jamescantcode/status/${publishedArticle.post_id}`;
     console.log(`   🎉 X Article Published! Post URL: ${postUrl}`);
 
-    console.log("4. Posting first reply with website and GitHub links...");
-    const replyText = `The interactive version of the handbook is live on the new creator hub:\nhttps://jamescantco.de/handbook\n\nAll open-source multi-agent templates are on GitHub:\nhttps://github.com/jamescantco-de/agent-starter-kit`;
+    console.log("4. Posting first reply with bookmark checklist and links...");
+    const replyText = `🔖 The Non-Coder Production Stack Cheat Sheet:
+
+1. Intent > Syntax: Act as product architect, not the compiler
+2. 3-Agent Harness: Architect (schema) + Builder (code) + Adversary (compiler)
+3. Headless Xcode: Debug native builds via CLI logs, not Xcode UI
+
+Full handbook & templates:
+https://jamescantco.de/handbook`;
     const replyTweet = await postReplyToPost(publishedArticle.post_id, replyText);
     if (replyTweet) console.log(`   First reply posted: https://x.com/jamescantcode/status/${replyTweet.id}`);
 

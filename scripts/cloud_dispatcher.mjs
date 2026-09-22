@@ -138,13 +138,22 @@ async function main() {
       const isDone = fs.existsSync(statePath);
       console.log(`• [${item.date}] "${item.name}" -> ${isDone ? '✅ Published' : isPast ? '⚠️ Past' : '⏳ Scheduled'}`);
     }
+    console.log(`\n🛰️ Running Conversational Radar on active published drops...`);
+    const monitorScript = path.join(REPO_ROOT, 'scripts', 'monitor_replies.mjs');
+    if (fs.existsSync(monitorScript)) {
+      await runScript(monitorScript, null, []);
+    }
     return;
   }
 
   const statePath = path.join(REPO_ROOT, targetDrop.stateFile);
   if (fs.existsSync(statePath) && !forceName && !isDryRun && !isVerify) {
     console.log(`✅ Drop "${targetDrop.name}" has ALREADY been published! (Found ${targetDrop.stateFile})`);
-    console.log(`Skipping to prevent duplicate posting.`);
+    console.log(`\n🛰️ Running Conversational Radar & Engagement Monitor...`);
+    const monitorScript = path.join(REPO_ROOT, 'scripts', 'monitor_replies.mjs');
+    if (fs.existsSync(monitorScript)) {
+      await runScript(monitorScript, null, []);
+    }
     return;
   }
 
