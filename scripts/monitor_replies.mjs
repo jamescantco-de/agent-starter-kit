@@ -146,7 +146,51 @@ async function main() {
       console.log(`🦋 Bluesky:    ${drop.bluesky.rootUrl}`);
     }
   }
+
+  await checkBskyNotifications();
+
   console.log(`\n======================================================\n`);
+}
+
+async function checkBskyNotifications() {
+  console.log(`\n------------------------------------------------------`);
+  console.log(`🦋 BLUESKY CONVERSATIONAL RADAR (AT PROTOCOL)`);
+  console.log(`------------------------------------------------------`);
+  const identifier = env.BSKY_IDENTIFIER || env.BLUESKY_IDENTIFIER;
+  const password = env.BSKY_APP_PASSWORD || env.BLUESKY_APP_PASSWORD;
+  if (!identifier || !password) {
+    console.log("   Bluesky credentials not configured.");
+    return;
+  }
+
+  try {
+    const sessionRes = await fetch("https://bsky.social/xrpc/com.atproto.server.createSession", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ identifier, password })
+    });
+    const session = await sessionRes.json();
+    if (!session.accessJwt) return;
+
+    const notifsRes = await fetch("https://bsky.social/xrpc/app.bsky.notification.listNotifications?limit=25", {
+      headers: { Authorization: `Bearer ${session.accessJwt}` }
+    });
+    const notifs = await notifsRes.json();
+    const meaningful = (notifs.notifications || []).filter(n => ["reply", "quote", "mention"].includes(n.reason));
+    
+    console.log(`Recent Inbound Interactions (Replies / Quotes / Mentions): ${meaningful.length}`);
+    for (const n of meaningful.slice(0, 5)) {
+      const author = n.author.handle;
+      const text = n.record?.text || "(No text)";
+      const d = new Date(n.indexedAt).toLocaleString("en-GB", { timeZone: "Europe/London" });
+      console.log(`\n💬 [${n.reason.toUpperCase()}] from @${author} (${d}):`);
+      console.log(`   "${text}"`);
+      const rkey = n.uri.split("/").pop();
+      console.log(`   🔗 https://bsky.app/profile/${author}/post/${rkey}`);
+    }
+  } catch (err) {
+    console.warn("   Error checking Bluesky notifications:", err.message);
+  }
 }
 
 main().catch(console.error);
