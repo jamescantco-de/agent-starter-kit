@@ -54,10 +54,14 @@ jobs:
         run: |
           git config --global user.name "James Can't Code Bot"
           git config --global user.email "bot@jamescantco.de"
-          if [[ -n $(git status --porcelain published*.json .replied_history.json) ]]; then
-            git add -f published*.json .replied_history.json
+          git add -f published*.json 2>/dev/null || true
+          if [ -f .replied_history.json ]; then
+            git add -f .replied_history.json
+          fi
+          if ! git diff --staged --quiet; then
             git commit -m "chore(auto): record published state and reply history [skip ci]"
             git push origin main
           else
             echo "No new state files to commit."
           fi
+
