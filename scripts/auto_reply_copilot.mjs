@@ -175,12 +175,14 @@ async function postBskyReply(session, rootUri, rootCid, parentUri, parentCid, te
 }
 
 async function main() {
-  const isAuto = process.argv.includes("--auto");
+  // SAFETY GUARD: Unattended autonomous posting disabled per RCA.
+  // Must only run in review / dry-run mode to prevent canned/generic responses.
+  const isAuto = false;
   const log = getRepliedLog();
 
   console.log("======================================================");
   console.log(`🤖 JCC GOLDEN HOUR AUTO-REPLY CO-PILOT (/james-voice)`);
-  console.log(`Mode: ${isAuto ? "⚡ LIVE AUTO-PILOT" : "🔍 REVIEW / PREVIEW (Dry-Run)"}`);
+  console.log(`Mode: 🔍 REVIEW / PREVIEW ONLY (Autonomous posting disarmed)`);
   console.log("======================================================\n");
 
   // 1. Bluesky Monitoring
