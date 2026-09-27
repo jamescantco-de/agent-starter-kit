@@ -1,14 +1,14 @@
 {
-  "publishedAt": "2026-09-27T07:21:45.452Z",
+  "publishedAt": "2026-09-27T07:38:27.401Z",
   "title": "Taste as Code: Open Design Library",
   "x": {
-    "postId": "2104109028657774688",
-    "postUrl": "https://x.com/jamescantcode/status/2104109028657774688",
+    "postId": "2104113368134975777",
+    "postUrl": "https://x.com/jamescantcode/status/2104113368134975777",
     "threadLength": 4
   },
   "bluesky": {
-    "rootUri": "at://did:plc:x6h3cpekmpjahnl7mdecupmx/app.bsky.feed.post/3mwib7kb7ch2j",
-    "rootUrl": "https://bsky.app/profile/jamescantcode.bsky.social/post/3mwib7kb7ch2j",
+    "rootUri": "at://did:plc:x6h3cpekmpjahnl7mdecupmx/app.bsky.feed.post/3mwic6ep7c62s",
+    "rootUrl": "https://bsky.app/profile/jamescantcode.bsky.social/post/3mwic6ep7c62s",
     "totalPosts": 4
   },
   "repoUrl": "https://github.com/jamescantco-de/taste-as-code"
