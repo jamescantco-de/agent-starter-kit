@@ -62,7 +62,7 @@ def create_hollow_neon_text(text, font, stroke_width=4):
 
     return bloom, (tw, th), pad
 
-def render_banner(core_path, title1, title2, line1, line2, line3, out_filename):
+def render_banner(core_path, title1, title2, line1, line2, line3, out_filename, footer_url="github.com/jamescantco-de/agent-starter-kit"):
     canvas = Image.new("RGBA", (WIDTH, HEIGHT), MIDNIGHT_SLATE)
     
     # Ambient glows
@@ -163,7 +163,7 @@ def render_banner(core_path, title1, title2, line1, line2, line3, out_filename):
     t_draw.text((85, 492), line1, font=tag_font_bold, fill=GHOST_WHITE)
     t_draw.text((85, 536), line2, font=tag_font_sub, fill=SUNSET_CORAL + (255,))
     t_draw.text((85, 574), line3, font=tag_font_sub, fill=MUTED_SLATE)
-    t_draw.text((85, 650), "github.com/jamescantco-de/agent-starter-kit", font=foot_font, fill=(148, 163, 184, 180))
+    t_draw.text((85, 650), footer_url, font=foot_font, fill=(148, 163, 184, 180))
     canvas = Image.alpha_composite(canvas, tag_img)
 
     out_jpg = os.path.join("/Users/nunn/Vibe Coding/agent-starter-kit/assets", out_filename)
@@ -189,7 +189,8 @@ render_banner(
     "KILLING FLAT PURPLE TAILWIND CARDS",
     "TACTILE SPACING · SPRING PHYSICS · APPLE HIG",
     "Why AI apps look cheap — and how to encode taste into prompts.",
-    "banner_taste_as_code.jpg"
+    "banner_taste_as_code.jpg",
+    footer_url="github.com/jamescantco-de/taste-as-code"
 )
 
 # Article 5
