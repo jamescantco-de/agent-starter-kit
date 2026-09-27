@@ -1,15 +1,15 @@
 {
-  "publishedAt": "2026-09-24T12:50:19.737Z",
-  "articleId": "2099248005555650563",
-  "title": "Taste as Code: Why Most AI Apps Look Cheap (And How to Force Agents to Have Taste)",
+  "publishedAt": "2026-09-27T07:21:45.452Z",
+  "title": "Taste as Code: Open Design Library",
   "x": {
-    "postId": "2103104709703954629",
-    "postUrl": "https://x.com/jamescantcode/status/2103104709703954629",
-    "replyTweetId": "2103104711172002225"
+    "postId": "2104109028657774688",
+    "postUrl": "https://x.com/jamescantcode/status/2104109028657774688",
+    "threadLength": 4
   },
   "bluesky": {
-    "rootUri": "at://did:plc:x6h3cpekmpjahnl7mdecupmx/app.bsky.feed.post/3mwbc7aqdsk2d",
-    "rootUrl": "https://bsky.app/profile/jamescantcode.bsky.social/post/3mwbc7aqdsk2d",
-    "totalPosts": 5
-  }
+    "rootUri": "at://did:plc:x6h3cpekmpjahnl7mdecupmx/app.bsky.feed.post/3mwib7kb7ch2j",
+    "rootUrl": "https://bsky.app/profile/jamescantcode.bsky.social/post/3mwib7kb7ch2j",
+    "totalPosts": 4
+  },
+  "repoUrl": "https://github.com/jamescantco-de/design-library"
 }
